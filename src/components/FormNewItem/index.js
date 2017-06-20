@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class FormNewItem extends Component {
     constructor (props) {
         super(props);
-        this.state = {description: ''};
+        // this.state = {description: ''};
         this.placeholder = "New item..."
 
         this.handleChange = this.handleChange.bind(this);
@@ -11,26 +11,29 @@ class FormNewItem extends Component {
     }
 
     handleChange(event) {
-        this.setState({
-            description: event.target.value
-        });
+        // this.setState({
+        //     description: event.target.value
+        // });
+
+        // TODO: Lift state up:
+        this.props.onDescriptionChange(event.target.value);
     }
 
     handleSubmit(event) {
-        // TODO: build Item and Lift state to App 
+        // TODO: Lift state to Checklist 
         event.preventDefault();
         
-        if (this.state.description === '')
+        if (this.props.description === '')
             return false;
         
-        alert(`Zugo bala é um ${this.state.description}`);
+        this.props.onCreateNewItem();
     }
     
     render () {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="text" 
-                    value={this.state.description} 
+                    value={this.props.description} 
                     onChange={this.handleChange}
                     placeholder={this.placeholder}
                     onFocus={(e) => e.target.placeholder = ""}

@@ -26,6 +26,7 @@ class Tick extends Component {
     render() {
         return (
             <div>
+                <p>For learning purpose only! </p>
                 {this.state.date.toLocaleTimeString()}
             </div>
         )
