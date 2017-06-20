@@ -41,7 +41,7 @@ class FormNewItem extends Component {
                     onFocus={(e) => e.target.placeholder = ""}
                     onBlur={(e) => e.target.placeholder = this.placeholder}
                 />
-                <input type="Submit" value={'+'} />
+                <input type="Submit" value={'+'} readOnly/>
             </form>
         )
     }
