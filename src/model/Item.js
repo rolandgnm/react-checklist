@@ -12,6 +12,13 @@ class Item {
         this._description = str
     }
     
+    get checked() {
+        return this._checked;
+    }
+
+    set checked(bool) {
+        this._checked = bool;
+    }
 }
 
 export default Item;

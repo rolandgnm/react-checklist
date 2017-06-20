@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class FormNewItem extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         // this.state = {description: ''};
         this.placeholder = "New item..."
@@ -11,6 +11,8 @@ class FormNewItem extends Component {
     }
 
     handleChange(event) {
+        event.preventDefault();
+
         // this.setState({
         //     description: event.target.value
         // });
@@ -22,24 +24,24 @@ class FormNewItem extends Component {
     handleSubmit(event) {
         // TODO: Lift state to Checklist 
         event.preventDefault();
-        
+
         if (this.props.description === '')
             return false;
-        
+
         this.props.onCreateNewItem();
     }
-    
-    render () {
+
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" 
-                    value={this.props.description} 
+                <input type="text"
+                    value={this.props.description}
                     onChange={this.handleChange}
                     placeholder={this.placeholder}
                     onFocus={(e) => e.target.placeholder = ""}
                     onBlur={(e) => e.target.placeholder = this.placeholder}
                 />
-                <input type="Submit" value={'+'}/>
+                <input type="Submit" value={'+'} />
             </form>
         )
     }
