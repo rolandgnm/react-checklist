@@ -13,11 +13,7 @@ class FormNewItem extends Component {
     handleChange(event) {
         event.preventDefault();
 
-        // this.setState({
-        //     description: event.target.value
-        // });
-
-        // TODO: Lift state up:
+        // TODO: Lift state to Checklist 
         this.props.onDescriptionChange(event.target.value);
     }
 
