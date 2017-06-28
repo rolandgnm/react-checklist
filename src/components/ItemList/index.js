@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Item from '../Item'
-class ListItems extends Component {
 
-    
-    
-    render () {
-        const items = this.props.items;
+const ItemList = ({items}) => {
         if (!items instanceof Array)
             return false
 
         let listItems = items.map((item, index) => 
-            <Item key={index} item={item}/>
+            <Item key={index} description={item.description}/>
         );
 
         return (
@@ -19,6 +15,5 @@ class ListItems extends Component {
             </ul>
         )
     }
-}
 
-export default ListItems
+export default ItemList

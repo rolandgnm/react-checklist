@@ -1,13 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Item extends Component {
-    render () {
-        return (
+const Item = ({description}) => 
             <li>
-                {this.props.item.description}
+                {description}
             </li>
-        )
-    }
-}
 
 export default Item
