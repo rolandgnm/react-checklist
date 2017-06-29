@@ -4,7 +4,7 @@ import FormNewItem from '../components/FormNewItem';
 import ItemList from '../components/ItemList';
 import Item from '../model/Item'
 
-class App extends Component {
+class Checklist extends Component {
 
     constructor(props) {
         super(props);
@@ -53,4 +53,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Checklist;
