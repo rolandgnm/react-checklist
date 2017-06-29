@@ -9,7 +9,7 @@
 
 import {ADD_ITEM} from '../constants/ChecklistActionsTypes'
 
-export const itemsReducer = (state = [], action) => {
+export const items = (state = [], action) => {
     switch (action.type) {
         case ADD_ITEM:
             return [

@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux'
-import * as reducers from './reducers'
+import * as reducers from '../reducers/itemsReducer'
 
-const checklist = combineReducers(reducers)
+export const checklist = combineReducers(reducers)
