@@ -10,7 +10,7 @@ class App extends Component {
         super(props);
         this.state = {
             description: '',
-            listItems: []
+            items: []
         };
 
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
@@ -27,10 +27,10 @@ class App extends Component {
         let newItem = new Item(this.state.description, false);
 
         this.setState((prevState, props) => {
-            const newList = prevState.listItems.concat(newItem);
+            const newList = prevState.items.concat(newItem);
             return {
                 description: '',
-                listItems: newList
+                items: newList
             }
         });
     }
@@ -47,7 +47,7 @@ class App extends Component {
                     onDescriptionChange={this.onDescriptionChange}
                     onCreateNewItem={this.onCreateNewItem}
                 />
-                <ItemList items={this.state.listItems} />
+                <ItemList items={this.state.items} />
             </div>
         );
     }
