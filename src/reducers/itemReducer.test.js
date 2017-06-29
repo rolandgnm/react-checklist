@@ -1,4 +1,4 @@
-import {itemsReducer} from './itemsReducer'
+import {items} from './itemsReducer'
 import {ADD_ITEM} from '../constants/ChecklistActionsTypes'
 
 let initialState;
@@ -6,7 +6,7 @@ let initialState;
 describe('items reducer: ', () => {
 
     beforeEach(() => {
-        initialState = itemsReducer(undefined, {})
+        initialState = items(undefined, {})
     })
 
     it('returns items initial state as empty array', () => {
@@ -20,7 +20,7 @@ describe('items reducer: ', () => {
             type: ADD_ITEM,
             description: "new item" 
         }
-        let newState = itemsReducer(initialState, action)
+        let newState = items(initialState, action)
         expect(newState).toHaveLength(1)
     })
 })
