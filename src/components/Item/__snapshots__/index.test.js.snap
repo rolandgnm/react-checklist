@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Item /> should render a single item 1`] = `
+<li
+  onClick={[Function]}
+>
+  my first item
+</li>
+`;
+
+exports[`<Item /> should render with a class name attribute 1`] = `
+<li
+  className="my-css-class"
+  onClick={[Function]}
+>
+  my first item
+</li>
+`;
