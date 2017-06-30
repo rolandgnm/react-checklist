@@ -1,30 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const FormNewItem = ({ onDescriptionChange, onCreateNewItem, description}) => {
-    let placeholder = "New item..."
+class FormNewItem extends Component {
 
-    return (
-    <form onSubmit={(e) => {
-                // TODO: Lift state to Checklist 
-                e.preventDefault()
-                if (description === '') return false
-                onCreateNewItem()
-            }}>
+    constructor(props) {
+        super(props)
+        this.placeholder = 'New item...'
+        this.state = {
+            description: '',
+            x: 0
+        }
+
+    }
+
+    render() {
+        return (
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    if (this.state.description === '') return false
+                    this.setState({
+                        description: ''
+                    })
+                    this.props.onCreateNewItem(this.state.description, this.props.listName)
+                }}>
                 <input type="text"
-                    value={description}
+                    value={this.state.description}
                     onChange={(e) => {
                         e.preventDefault()
-                        // TODO: Lift state to Checklist 
-                        onDescriptionChange(e.target.value);
+                        this.setState({ description: e.target.value })
                     }}
-                    placeholder={placeholder}
+                    placeholder={this.placeholder}
                     onFocus={(e) => e.target.placeholder = ""}
-                    onBlur={(e) => e.target.placeholder = placeholder}
+                    onBlur={(e) => e.target.placeholder = this.placeholder}
                 />
-        < input type="Submit" value={'+'} readOnly />
-    </form > )
+                < input type="Submit" value={'+'} readOnly />
+            </form >)
+
+    }
 }
 
-
-
 export default FormNewItem
+
