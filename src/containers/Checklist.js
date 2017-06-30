@@ -1,40 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../styles/Checklist.css';
 import FormNewItem from '../components/FormNewItem';
 import ItemList from '../components/ItemList';
-import Item from '../model/Item'
+import {addItem} from '../actions/ChecklistActions'
+import {createSelector} from 'reselect';
+import {getItemsWithName} from '../selectors/ItemsSelector';
 
 class Checklist extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            description: '',
-            items: []
-        };
-
-        this.onDescriptionChange = this.onDescriptionChange.bind(this);
-        this.onCreateNewItem = this.onCreateNewItem.bind(this);
-    }
-
-    onDescriptionChange(newDescription) {
-        this.setState({
-            description: newDescription
-        });
-    }
-
-    onCreateNewItem() {
-        let newItem = new Item(this.state.description, false);
-
-        this.setState((prevState, props) => {
-            const newList = prevState.items.concat(newItem);
-            return {
-                description: '',
-                items: newList
-            }
-        });
-    }
-
     render() {
         return (
             <div className="App">
@@ -43,14 +16,51 @@ class Checklist extends Component {
                 </div>
 
                 <FormNewItem
-                    description={this.state.description}
-                    onDescriptionChange={this.onDescriptionChange}
-                    onCreateNewItem={this.onCreateNewItem}
+                    listName='list1'
+                    onCreateNewItem={this.props.onCreateNewItem}
                 />
-                <ItemList items={this.state.items} />
+                <ItemList items={this.props.items} />
+
+
+                <FormNewItem
+                    listName='list2'
+                    onCreateNewItem={this.props.onCreateNewItem}
+                />
+                <ItemList items={this.props.items2} />
             </div>
         );
     }
 }
 
-export default Checklist;
+
+// Get list factory
+let createGetItems = (name) => {
+    return createSelector(
+        (items) => items,
+        (items) => {
+            return getItemsWithName(items, name);
+        }
+    );
+}
+
+// Create a memoization selector
+let getItems1 = createGetItems('list1');
+let getItems2 = createGetItems('list2');
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        items: getItems1(state.items),
+        items2: getItems2(state.items),
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+
+        onCreateNewItem: (description, listName) => {
+            dispatch(addItem(description, listName))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checklist)
