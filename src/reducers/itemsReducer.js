@@ -9,14 +9,18 @@
 
 import {ADD_ITEM} from '../constants/ChecklistActionsTypes'
 
-export const items = (state = [], action) => {
+const initialState = [];
+
+export const items = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ITEM:
+        
             return [
                     ...state,
                     {
                         description: action.description,
-                        checked: false
+                        checked: false,
+                        listName: action.listName
                     }
                 ]
         default:
