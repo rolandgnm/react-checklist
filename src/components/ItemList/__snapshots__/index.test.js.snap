@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListItem /> should render a list 1`] = `
+<ul>
+  <li
+    onClick={[Function]}
+  >
+    my first item
+  </li>
+</ul>
+`;
